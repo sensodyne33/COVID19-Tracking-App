@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Live</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--add boostrap css to spring-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <h1>Daily Global Coronavirus Tracker</h1>
+
+    <div class="jumbotron">
+        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <p>
+            <span>New cases reported since previous day:</span>
+            <span th:text="${totalNewCases}"></span>
+        </p>
+    </div>
+
+<!--    <br>-->
+<!--    <div>-->
+<!--        <form class="navbar-form navbar-right">-->
+<!--            <div class="form-group">-->
+<!--                <input type="text" class="form-control" placeholder="Search your location">-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-danger">Search</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <br>-->
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th class="bg-primary">State</th>
+            <th class="bg-primary">Country</th>
+            <th class="bg-danger">Total cases reported</th>
+            <th class="bg-danger">Case changes since previous day</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
